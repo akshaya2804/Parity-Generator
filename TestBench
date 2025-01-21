@@ -1,1 +1,22 @@
-
+module tb_parity_generator;  
+    reg [3:0] data_in;      
+    wire      even_parity;   
+    wire      odd_parity;    
+ parity_generator uut (  
+        .data_in(data_in),  
+        .even_parity(even_parity),  
+        .odd_parity(odd_parity)  
+  );  
+       initial begin  
+        $monitor("Time=%0t | Data_in=%b | Even_Parity=%b | Odd_Parity=%b", $time, data_in,  
+even_parity, odd_parity);  
+data_in = 4'b0000; #10;    
+        data_in = 4'b0001; #10;    
+        data_in = 4'b0011; #10;    
+        data_in = 4'b0111; #10  
+        data_in = 4'b1111; #10;    
+        data_in = 4'b1010; #10;   
+        data_in = 4'b0101; #10  
+$stop;   
+    end  
+endmodule
